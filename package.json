@@ -2,7 +2,7 @@
   "name": "save-twitter-threads",
   "version": "0.1.0",
   "description": "",
-  "main": "index.js",
+  "main": "save-twitter-threads.user.js",
   "scripts": {
     "test": ""
   },
