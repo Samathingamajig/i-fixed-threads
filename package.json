@@ -1,0 +1,15 @@
+{
+  "name": "save-twitter-threads",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": ""
+  },
+  "keywords": [],
+  "author": "Samuel Gunter",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^5.0.3"
+  }
+}
