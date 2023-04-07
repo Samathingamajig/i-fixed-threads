@@ -14,36 +14,46 @@ const getTweetDrafts = () => document.querySelectorAll('[role="dialog"] [aria-la
 let isCurrentlyPasting = false;
 let pastingDraftIndex = 0;
 let savedDraftData = [];
+const saveTweets = () => {
+    const draftElements = Array.from(getTweetDrafts());
+    const draftContents = draftElements.map((draft) => draft.innerText.trim().replaceAll("\n\n", "\n")).filter(Boolean);
+    if (draftContents.length === 0)
+        return;
+    localStorage.setItem(":sgunter:thread", JSON.stringify(draftContents));
+};
+const loadTweets = () => {
+    const rawData = localStorage.getItem(":sgunter:thread");
+    if (rawData) {
+        try {
+            savedDraftData = JSON.parse(rawData);
+        }
+        catch (_a) { }
+    }
+    if (!savedDraftData) {
+        alert("No thread saved or thread corrupted");
+        return;
+    }
+    isCurrentlyPasting = true;
+    pastingDraftIndex = 0;
+    navigator.clipboard.writeText(savedDraftData[pastingDraftIndex]);
+};
 const rightClickHandler = (e) => {
     var _a;
     if (!((_a = getTweetButton()) === null || _a === void 0 ? void 0 : _a.contains(e.target)))
         return;
     e.preventDefault();
     if (e.shiftKey) {
-        // load tweets
-        console.log("load tweets");
-        const rawData = localStorage.getItem(":sgunter:thread");
-        if (rawData) {
-            try {
-                savedDraftData = JSON.parse(rawData);
-            }
-            catch (_b) { }
-        }
-        if (!savedDraftData) {
-            alert("No thread saved or thread corrupted");
-            return;
-        }
-        isCurrentlyPasting = true;
-        pastingDraftIndex = 0;
-        navigator.clipboard.writeText(savedDraftData[pastingDraftIndex]);
+        loadTweets();
     }
     else {
-        // save tweets
-        console.log("save tweets");
-        const draftElements = Array.from(getTweetDrafts());
-        const draftContents = draftElements.map((draft) => draft.innerText.trim().replaceAll("\n\n", "\n")).filter(Boolean);
-        localStorage.setItem(":sgunter:thread", JSON.stringify(draftContents));
+        saveTweets();
     }
+};
+const leftClickHandler = (e) => {
+    var _a;
+    if (!((_a = getTweetButton()) === null || _a === void 0 ? void 0 : _a.contains(e.target)))
+        return;
+    saveTweets();
 };
 const pasteHandler = () => __awaiter(void 0, void 0, void 0, function* () {
     var _a;
@@ -63,6 +73,7 @@ const pasteHandler = () => __awaiter(void 0, void 0, void 0, function* () {
     navigator.clipboard.writeText(savedDraftData[pastingDraftIndex]);
 });
 window.addEventListener("contextmenu", rightClickHandler);
+window.addEventListener("click", leftClickHandler, true);
 window.addEventListener("paste", pasteHandler);
 window.s = {
     getAddTweetButton,

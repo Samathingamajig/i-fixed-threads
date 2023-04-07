@@ -6,36 +6,47 @@ let isCurrentlyPasting = false;
 let pastingDraftIndex = 0;
 let savedDraftData: string[] = [];
 
+const saveTweets = () => {
+  const draftElements = Array.from(getTweetDrafts());
+  const draftContents = draftElements.map((draft) => draft.innerText.trim().replaceAll("\n\n", "\n")).filter(Boolean);
+  if (draftContents.length === 0) return;
+  localStorage.setItem(":sgunter:thread", JSON.stringify(draftContents));
+};
+
+const loadTweets = () => {
+  const rawData = localStorage.getItem(":sgunter:thread");
+  if (rawData) {
+    try {
+      savedDraftData = JSON.parse(rawData);
+    } catch {}
+  }
+
+  if (!savedDraftData) {
+    alert("No thread saved or thread corrupted");
+    return;
+  }
+
+  isCurrentlyPasting = true;
+  pastingDraftIndex = 0;
+  navigator.clipboard.writeText(savedDraftData[pastingDraftIndex]);
+};
+
 const rightClickHandler = (e: MouseEvent) => {
   if (!getTweetButton()?.contains(e.target as Node)) return;
 
   e.preventDefault();
 
   if (e.shiftKey) {
-    // load tweets
-    console.log("load tweets");
-    const rawData = localStorage.getItem(":sgunter:thread");
-    if (rawData) {
-      try {
-        savedDraftData = JSON.parse(rawData);
-      } catch {}
-    }
-
-    if (!savedDraftData) {
-      alert("No thread saved or thread corrupted");
-      return;
-    }
-
-    isCurrentlyPasting = true;
-    pastingDraftIndex = 0;
-    navigator.clipboard.writeText(savedDraftData[pastingDraftIndex]);
+    loadTweets();
   } else {
-    // save tweets
-    console.log("save tweets");
-    const draftElements = Array.from(getTweetDrafts());
-    const draftContents = draftElements.map((draft) => draft.innerText.trim().replaceAll("\n\n", "\n")).filter(Boolean);
-    localStorage.setItem(":sgunter:thread", JSON.stringify(draftContents));
+    saveTweets();
   }
+};
+
+const leftClickHandler = (e: MouseEvent) => {
+  if (!getTweetButton()?.contains(e.target as Node)) return;
+
+  saveTweets();
 };
 
 const pasteHandler = async () => {
@@ -55,6 +66,7 @@ const pasteHandler = async () => {
 };
 
 window.addEventListener("contextmenu", rightClickHandler);
+window.addEventListener("click", leftClickHandler, true);
 window.addEventListener("paste", pasteHandler);
 
 (window as any).s = {
