@@ -1,4 +1,4 @@
-# Save Twitter Threads
+# I Fixed Threads
 
 A userscript that allows you to save Twitter threads to local storage with easy reentry in case Twitter loses your thread in the ether.
 
@@ -8,8 +8,8 @@ Why? Because [Theo](https://twitter.com/t3dotgg) has frequently lost threads due
 
 - Install Tampermonkey from the [Chrome Web Store](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo) (or [Firefox Add-ons](https://addons.mozilla.org/en-US/firefox/addon/tampermonkey/))
 - After this, you have two options (only do one of these):
-  - **GreasyFork** _(recommended)_: Go to the [GreasyFork page](https://greasyfork.org/en/scripts/463465-save-twitter-threads) and click the green "Install this script" button. This will take you to a page on Tampermonkey where you need to click "Install" to install the script.
-  - **GitHub/Manual install** _(not recommended)_: Go to the [raw script page](https://raw.githubusercontent.com/Samathingamajig/save-twitter-threads/main/save-twitter-threads.user.js). Tampermonkey will automatically detect this file as a userscript (since the file is named `*.user.js`), so click the "Install" button to install it. If it doesn't, copy the entire contents of the script into the Tampermonkey script editor (**make sure you save**).
+  - **GreasyFork** _(recommended)_: Go to the [GreasyFork page](https://greasyfork.org/en/scripts/463465-i-fixed-threads) and click the green "Install this script" button. This will take you to a page on Tampermonkey where you need to click "Install" to install the script.
+  - **GitHub/Manual install** _(not recommended)_: Go to the [raw script page](https://raw.githubusercontent.com/Samathingamajig/i-fixed-threads/main/i-fixed-threads.user.js). Tampermonkey will automatically detect this file as a userscript (since the file is named `*.user.js`), so click the "Install" button to install it. If it doesn't, copy the entire contents of the script into the Tampermonkey script editor (**make sure you save**).
   - If none of these work, look up how to install a Tampermonkey userscript.
 
 ## 📝 Usage
@@ -19,14 +19,14 @@ Why? Because [Theo](https://twitter.com/t3dotgg) has frequently lost threads due
 To save a thread, you can either:
 
 - Right click "Tweet all"
-- Right click anywhere except that button, Tampermonkey > Save Twitter Threads > Save thread
+- Right click anywhere except that button, Tampermonkey > I Fixed Threads > Save thread
 
 ### Loading a thread
 
 To load a thread, you can either:
 
 - Shift + right click "Tweet all"
-- Right click anywhere except that button, Tampermonkey > Save Twitter Threads > Load thread
+- Right click anywhere except that button, Tampermonkey > I Fixed Threads > Load thread
 
 then alternate between <kbd>Cmd</kbd><kbd>v</kbd>/<kbd>Ctrl</kbd><kbd>v</kbd> and <kbd>Space</kbd> to paste and go to the next tweet box. When every tweet has been pasted, the script will automatically defocus to indicate this.
 
@@ -41,4 +41,4 @@ If you don't want to use this script anymore, you can uninstall it anytime.
 
 ## 🐛 Bugs:
 
-Please file bugs under the [Issues tab](https://github.com/Samathingamajig/save-twitter-threads/issues).
+Please file bugs under the [Issues tab](https://github.com/Samathingamajig/i-fixed-threads/issues).

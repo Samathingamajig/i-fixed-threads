@@ -1,7 +1,7 @@
 // ==UserScript==
-// @name         Save Twitter Threads
+// @name         I Fixed Threads
 // @namespace    http://tampermonkey.net/
-// @version      0.1
+// @version      0.1.1
 // @description  Save Twitter threads to local storage with easy reentry in case Twitter loses your thread in the ether
 // @author       Samuel Gunter
 // @license      MIT

@@ -1,8 +1,8 @@
 {
-  "name": "save-twitter-threads",
+  "name": "i-fixed-threads",
   "version": "0.1.0",
   "description": "",
-  "main": "save-twitter-threads.user.js",
+  "main": "i-fixed-threads.user.js",
   "scripts": {
     "test": ""
   },
