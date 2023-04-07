@@ -86,9 +86,3 @@ if (typeof GM_registerMenuCommand !== "undefined") {
   GM_registerMenuCommand("Save Thread", saveTweets, "s");
   GM_registerMenuCommand("Load Thread", loadTweets, "l");
 }
-
-(window as any).s = {
-  getAddTweetButton,
-  getTweetButton,
-  getTweetDrafts,
-};
