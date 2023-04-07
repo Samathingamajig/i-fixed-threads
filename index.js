@@ -1,4 +1,14 @@
 "use strict";
+// ==UserScript==
+// @name         Save Twitter Threads
+// @namespace    http://tampermonkey.net/
+// @version      0.1
+// @description  Save Twitter threads to local storage with easy reentry in case Twitter loses your thread in the ether
+// @author       Samuel Gunter
+// @match        https://twitter.com/*
+// @icon         https://www.google.com/s2/favicons?sz=64&domain=twitter.com
+// @grant        GM_registerMenuCommand
+// ==/UserScript==
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -56,7 +66,7 @@ const leftClickHandler = (e) => {
     saveTweets();
 };
 const pasteHandler = () => __awaiter(void 0, void 0, void 0, function* () {
-    var _a;
+    var _a, _b, _c;
     if (!isCurrentlyPasting)
         return;
     if (!savedDraftData.includes(yield navigator.clipboard.readText())) {
@@ -67,14 +77,20 @@ const pasteHandler = () => __awaiter(void 0, void 0, void 0, function* () {
     if (pastingDraftIndex >= savedDraftData.length) {
         navigator.clipboard.writeText("");
         isCurrentlyPasting = false;
+        (_a = getAddTweetButton()) === null || _a === void 0 ? void 0 : _a.focus();
+        (_b = getAddTweetButton()) === null || _b === void 0 ? void 0 : _b.blur();
         return;
     }
-    (_a = getAddTweetButton()) === null || _a === void 0 ? void 0 : _a.focus();
+    (_c = getAddTweetButton()) === null || _c === void 0 ? void 0 : _c.focus();
     navigator.clipboard.writeText(savedDraftData[pastingDraftIndex]);
 });
 window.addEventListener("contextmenu", rightClickHandler);
 window.addEventListener("click", leftClickHandler, true);
 window.addEventListener("paste", pasteHandler);
+if (typeof GM_registerMenuCommand !== "undefined") {
+    GM_registerMenuCommand("Save Thread", saveTweets, "s");
+    GM_registerMenuCommand("Load Thread", loadTweets, "l");
+}
 window.s = {
     getAddTweetButton,
     getTweetButton,
