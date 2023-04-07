@@ -4,6 +4,7 @@
 // @version      0.1
 // @description  Save Twitter threads to local storage with easy reentry in case Twitter loses your thread in the ether
 // @author       Samuel Gunter
+// @license      MIT
 // @match        https://twitter.com/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=twitter.com
 // @grant        GM_registerMenuCommand
